@@ -1,7 +1,7 @@
 
 PULL := git subtree pull --prefix
 
-PLUGINS  $(realpath ./plugins)
+PLUGINS := $(realpath ./plugins)
 
 .PHONY: install update
 
@@ -16,4 +16,3 @@ update:
 	$(PULL) plugins/zsh-autosuggestions git@github.com:zsh-users/zsh-autosuggestions.git master --squash
 	@echo "Updating themes..."
 	$(PULL) themes/powerlevel10k git@github.com/romkatv/powerlevel10k.git master --squash
-
