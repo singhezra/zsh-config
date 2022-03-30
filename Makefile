@@ -3,11 +3,12 @@ PULL := git subtree pull --prefix
 
 PLUGINS := $(realpath ./plugins)
 
-.PHONY: install update
+.PHONY: install update clean
 
 install:
-	apt install zsh
 	exec $(PLUGINS)/.oh-my-zsh/tools/install.sh
+	mv ${HOME}/.zshrc ${HOME}/.zshrc.bak
+	cp .zshrc ${HOME}
 
 update:
 	@echo "Updating plugins..."
@@ -16,3 +17,6 @@ update:
 	$(PULL) plugins/zsh-autosuggestions git@github.com:zsh-users/zsh-autosuggestions.git master --squash
 	@echo "Updating themes..."
 	$(PULL) themes/powerlevel10k git@github.com/romkatv/powerlevel10k.git master --squash
+
+clean:
+	rm -rf aws awscliv2.zip get-docker.sh *.tar.gz
